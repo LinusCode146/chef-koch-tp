@@ -1,0 +1,10 @@
+.container > textarea {
+    width: 62vw;
+    height: 37vh;
+    resize: both;
+    color: var(--main-pink);
+    font-weight: bold;
+    border-radius: 1rem;
+    outline: none;
+    padding: 2rem;
+}

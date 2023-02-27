@@ -1,0 +1,26 @@
+.container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+}
+
+.container > input {
+    width: 30rem;
+    height: 4.5rem;
+    border-radius: 5rem;
+    padding: 1em;
+    color: var(--main-pink);
+    font-weight: bold;
+    border: none;
+}
+
+.container > input:focus {
+    outline: none;
+}

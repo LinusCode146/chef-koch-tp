@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --main-pink: rgb(209, 0, 126);
+  --main-black: rgb(0, 0, 0);
+  --main-background: #0e0e0e;
+  --main-text: #fff;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -10,4 +17,8 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background: var(--main-background);
 }

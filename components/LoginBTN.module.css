@@ -1,0 +1,14 @@
+.btn {
+    border-radius: 5rem;
+    background: var(--main-pink);
+    color: var(--main-text);
+    height: 2.5rem;
+    width: 7rem;
+    transition: .75s;
+    font-weight: bold;
+    margin-left: 5rem;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}

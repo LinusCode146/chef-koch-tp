@@ -1,0 +1,48 @@
+.container {
+    position: fixed;
+    width: 100%;
+    background: var(--main-black);
+    height: 8.5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--main-text);
+    user-select: none;
+}
+
+.logo {
+    text-align: center;
+    color: var(--main-pink);
+    font-size: 2.5rem;
+    font-weight: bolder;
+    display: inline;
+    margin-left: 2.5vw;
+}
+
+.links {
+    width: 45vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 10vw;
+}
+.pageLink {
+    transition: .75s;
+    font-weight: bold;
+    font-size: 1.18rem;
+    border-radius: 5rem;
+    width: 9rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.pageLink:hover {
+    background: gray;
+}
+
+.authLinks {
+    margin-right: 1vw;
+}

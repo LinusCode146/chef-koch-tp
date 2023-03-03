@@ -6,6 +6,10 @@ import React, {useState} from "react";
 import FormCategory from "@/components/CreatePage/FormCategory";
 import FormTitle from "@/components/CreatePage/FormTitle";
 import FormContent from "@/components/CreatePage/FormContent";
+import { useMutation, useQueryClient} from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import axios, {AxiosError} from "axios";
+
 
 export type FormData = {
     title: string
@@ -24,6 +28,23 @@ const INITIAL_DATA: FormData = {
 export default function CreateRecipe() {
     const [data, setData] = useState(INITIAL_DATA);
     const [isDisabled, setIsDisabled] = useState(false)
+    const queryClient = useQueryClient()
+    let toastPostID : string
+
+    const { mutate } = useMutation(
+        async (data: FormData) => await axios.post("/api/recipes/addRecipe", data),
+        {
+            onError: (error) => {
+                if(error instanceof AxiosError){
+                    toast.error(error?.response?.data.message, { id: toastPostID })
+                }
+            },
+            onSuccess: (data) => {
+                toast.success("Post has been made !", { id: toastPostID })
+
+            }
+        }
+    )
 
     function updateFields(fields: Partial<FormData>) {
         setData((prev) => {
@@ -41,7 +62,10 @@ export default function CreateRecipe() {
         e.preventDefault()
         if(!isLastStep) return next()
 
-        setIsDisabled(true)
+        toastPostID = toast.loading("Creating your post", { id: toastPostID })
+        queryClient.invalidateQueries(["recipes"]).then(r => null)
+        setIsDisabled(true);
+        mutate(data);
     }
 
     return (

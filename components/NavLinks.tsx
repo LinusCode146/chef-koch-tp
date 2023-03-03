@@ -8,7 +8,7 @@ export default function NavLinks () {
         <div className={styles.links}>
             <Link className={styles.pageLink} href={'/create'}>Create</Link>
             <Link className={styles.pageLink} href={'/rankings'}>Rankings</Link>
-            <Link className={styles.pageLink} href={'/categories'}>Categories</Link>
+            <Link className={styles.pageLink} href={'/dashboard'}>Dashboard</Link>
         </div>
     )
 }

@@ -3,6 +3,7 @@
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import { RecipeType } from "@/types/Recipe";
+import RecipesGrid from "@/components/RecipesGrid";
 
 
 
@@ -15,12 +16,11 @@ export default function Home() {
   if (error) return error
   if (isLoading) return 'Loading...'
 
-  console.log(data)
 
-
+  // @ts-ignore
   return (
     <main>
-
+      <RecipesGrid recipes={data} />
     </main>
   )
 }

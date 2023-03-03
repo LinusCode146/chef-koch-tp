@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+
 .container {
     position: fixed;
     width: 100%;
@@ -17,6 +20,7 @@
     font-weight: bolder;
     display: inline;
     margin-left: 2.5vw;
+    font-family: 'Nunito', sans-serif !important;
 }
 
 .links {

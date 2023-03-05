@@ -6,6 +6,7 @@
     min-height: 19rem;
     width: 13rem;
     text-align: center;
+    user-select: none;
 }
 
 .container > h3 {

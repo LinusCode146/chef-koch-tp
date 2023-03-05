@@ -10,7 +10,7 @@ export default async function handler(
 ) {
     const session = await getServerSession(req, res, authOptions);
 
-    if(!session) return res.status(401).json({ message: "Please sign in to make a post!" });
+    if(!session) return res.status(401).json({ message: "Please sign in to make a recipe!" });
     if( req.method !== "POST") return res.status(401).json({message: "Contacted addRecipe API Route"})
 
     const { image, title, content, category } = req.body;

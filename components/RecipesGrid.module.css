@@ -3,7 +3,7 @@
     padding: 1.5rem;
     right: 0;
     left: 1.5em;
-    top: 10vh;
+    top: 13rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
     grid-gap: 4rem;

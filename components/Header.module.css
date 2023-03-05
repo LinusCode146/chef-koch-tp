@@ -16,8 +16,8 @@
 .logo {
     text-align: center;
     color: var(--main-pink);
-    font-size: 2.5rem;
-    font-weight: bolder;
+    font-size: 3rem;
+    font-weight: 900;
     display: inline;
     margin-left: 2.5vw;
     font-family: 'Nunito', sans-serif !important;

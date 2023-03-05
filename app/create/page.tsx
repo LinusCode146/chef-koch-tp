@@ -52,7 +52,7 @@ export default function CreateRecipe() {
         })
     }
 
-    const {step, steps, currentStepIndex, isLastStep, isFirstStep, back, next} = useMultistepForm([
+    const {step, steps, currentStepIndex, isLastStep, isFirstStep, back, next, goTo} = useMultistepForm([
         <FormCategory updateFields={updateFields} />,
         <FormTitle {...data} updateFields={updateFields} />,
         <FormContent {...data} updateFields={updateFields} />

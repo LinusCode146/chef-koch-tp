@@ -5,6 +5,8 @@ import styles from './LoginBTN.module.css'
 import Image from "next/image";
 
 export default function LoginBTN ({image}: {image: string}) {
+
+
     return (
         <div className="flex justify-between items-center">
             <button onClick={() => signOut()} className={styles.btn}>Sign Out</button>

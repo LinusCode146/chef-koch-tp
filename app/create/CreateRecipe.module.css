@@ -56,3 +56,10 @@
     height: 3.6rem;
     background-color: var(--main-pink) !important;
 }
+
+.nextBTN:hover {
+    filter: brightness(0.8);
+}
+.backBTN:hover {
+    filter: brightness(0.8);
+}

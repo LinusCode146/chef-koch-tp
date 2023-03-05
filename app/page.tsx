@@ -21,11 +21,6 @@ export default function Home() {
   if (error) return error
   if (isLoading) return 'Loading...'
 
-
-  for(const obj of data!!) {
-    console.log(obj.category)
-  }
-
   let currentRecipes = data?.filter((recipe: RecipeType) => categories.includes(recipe.category));
 
   return (

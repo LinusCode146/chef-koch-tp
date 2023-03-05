@@ -1,12 +1,9 @@
 .container {
-    position: absolute;
-    padding: 1.5rem;
-    right: 0;
-    left: 1.5em;
-    top: 13rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     grid-gap: 4rem;
+    place-items: center;
     width: 100%;
+    z-index: -1;
 }
 

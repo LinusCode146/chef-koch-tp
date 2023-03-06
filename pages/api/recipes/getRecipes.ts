@@ -14,6 +14,7 @@ export default async function handler(
         const data = await prisma.Recipe.findMany({
             include: {
                 author: true,
+                hearts: true,
             },
             orderBy: {
                 createdAt: "desc"

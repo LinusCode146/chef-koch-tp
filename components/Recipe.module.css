@@ -25,9 +25,11 @@
     width: 100%;
     border-radius: 1rem;
     transition: .75s;
+    z-index: -10;
 }
 
 .container  img:hover {
     cursor: pointer;
     transform: scale(1.03);
+    z-index: -10;
 }

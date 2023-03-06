@@ -13,23 +13,36 @@ export default async function handler(
     if(!session) return res.status(401).json({ message: "Please sign in to make a recipe!" });
     if( req.method !== "POST") return res.status(401).json({message: "Contacted addRecipe API Route"})
 
-    const { image, title, content, category } = req.body;
-
+    //get prisma user
     const prismaUser = await prisma.user.findUnique({
         where: { email: session?.user?.email },
-    });
+    })
 
-    try {
-        const result = await prisma.Recipe.create({
-            data: {
-                image,
-                title,
-                content,
-                category,
-                authorId: prismaUser.id,
-            }
-        })
-        res.status(200).json(result)
+    const heart = await prisma.heart.findFirst({
+        where: {
+            recipeId: req.body.recipeId,
+            authorId: prismaUser.id,
+        },
+    })
+
+
+    try{
+        if (!heart) {
+            const result = await prisma.heart.create({
+                data: {
+                    recipeId: req.body.recipeId,
+                    authorId: prismaUser.id,
+                },
+            })
+            res.status(201).json(result)
+        } else {
+            const result = await prisma.heart.delete({
+                where: {
+                    id: heart.id,
+                },
+            })
+            res.status(200).json(result)
+        }
     }catch (err) {
         return res.status(403).json({error: "error has occurred while publishing the recipe"})
     }

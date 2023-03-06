@@ -3,6 +3,7 @@ import React from "react";
 import Header from "../components/Header"
 import {Nunito} from "@next/font/google";
 import QueryWrapper from "../components/QueryWrapper"
+import AuthContext from "../components/AuthContext";
 
 const nunito = Nunito({
     subsets: ["latin"],
@@ -23,8 +24,10 @@ export default function RootLayout({
       <head ><title>ChefKoch</title></head>
       <body className={`${nunito.variable}`}>
           <QueryWrapper>
-              <Header />
-              {children}
+              <AuthContext>
+                  <Header />
+                  {children}
+              </AuthContext>
           </QueryWrapper>
       </body>
     </html>

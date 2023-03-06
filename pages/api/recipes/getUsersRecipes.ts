@@ -26,6 +26,7 @@ export default async function handler(
             where: {authorId: prismaUser.id},
             include: {
                 author: true,
+                hearts: true,
             },
             orderBy: {
                 createdAt: "desc"

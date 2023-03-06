@@ -17,12 +17,19 @@ model Recipe {
   title     String
   content   String
   image     String
-  likes     Int?     @default(0)
-  dislikes  Int?     @default(0)
   comments  Comment[]
   category  String
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+  hearts    Heart[]
+}
+
+model Heart {
+  id        String @id @default(cuid())
+  recipeId  String
+  authorId  String
+  recipe    Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  author    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
@@ -30,8 +37,6 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   content   String
-  likes     Int?     @default(0)
-  dislikes  Int?     @default(0)
   recipe    Recipe   @relation(fields: [recipeId], references: [id])
   recipeId  String
 }
@@ -73,6 +78,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   recipes       Recipe[]
+  hearts        Heart[]
 }
 
 model VerificationToken {

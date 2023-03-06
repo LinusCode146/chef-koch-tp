@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    position: relative;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -38,6 +39,23 @@
     width: 50vw;
     color: black;
     padding: 2rem;
+}
+
+.likeBTN {
+    position: absolute;
+    top: 6.5rem;
+    right: 6rem;
+    background-color: var(--main-pink);
+    color: white;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    transition: .5s;
+    font-size: 1.8rem;
+}
+
+.likeBTN:hover {
+    filter: brightness(0.8);
 }
 
 @media (max-width: 900px) {

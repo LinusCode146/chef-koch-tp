@@ -15,6 +15,7 @@ export default async function handler(
                 },
                 include: {
                     author: true,
+                    hearts: true,
                 }
             })
             return res.status(200).json(data);

@@ -26,7 +26,7 @@ const fetchDetails = async (slug: string) => {
 export default function RecipeDetail(url: URL) {
     const { data, isLoading } = useQuery<RecipeType>({
         queryFn: () => fetchDetails(url.params.slug),
-        queryKey: ['detail-recipe'],
+        queryKey: ["detail-recipe"],
     })
     const queryClient = useQueryClient();
     let toastPostID : string
@@ -38,10 +38,9 @@ export default function RecipeDetail(url: URL) {
             if(error instanceof AxiosError){
                 toast.error(error?.response?.data.message, { id: toastPostID })
             }
-        },
-            onSuccess: (data) => {
+        }, onSuccess: (data) => {
+            queryClient.invalidateQueries(["detail-recipe"]).then(r => null)
             toast.success("Like has been published !", { id: toastPostID })
-
         }
     }
     )
@@ -50,7 +49,6 @@ export default function RecipeDetail(url: URL) {
 
     function addLikeHandler() {
         toastPostID = toast.loading("Liking recipe...", { id: toastPostID })
-        queryClient.invalidateQueries(["recipes"]).then(r => null)
         mutate({recipeId: data?.id})
     }
 
@@ -60,7 +58,7 @@ export default function RecipeDetail(url: URL) {
             <div className={styles.headerFiller}></div>
             <div className={styles.container}>
                 <button onClick={addLikeHandler} className={styles.likeBTN}>👍</button>
-                <h1 className={styles.title}>{data?.title}</h1>
+                <h1 className={styles.title}>{data?.title} ({data?.hearts.length})</h1>
                 <div className={styles.card}>
                     <img src={data?.image} alt="Recipes Image" />
                     <div>{data?.content}</div>

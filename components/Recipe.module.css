@@ -19,7 +19,7 @@
 
 
 
-.container > img {
+.container  img {
     object-fit: cover;
     height: 18rem;
     width: 100%;
@@ -27,7 +27,7 @@
     transition: .75s;
 }
 
-.container > img:hover {
+.container  img:hover {
     cursor: pointer;
     transform: scale(1.03);
 }

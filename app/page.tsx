@@ -4,13 +4,14 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import { RecipeType } from "@/types/Recipe";
 import RecipesGrid from "@/components/RecipesGrid";
-import React, { useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import styles from './page.module.css'
+
 
 
 export default function Home() {
   const [categories, setCategories] = useState<string[]>(["Fisch", "Fleisch", "Vegan", "Andere", "Vegetarisch", "Dessert"])
-
+  const [query, setQuery] = useState("")
 
 
   let { data, error, isLoading } = useQuery<RecipeType[]>({
@@ -18,10 +19,15 @@ export default function Home() {
     queryKey: ["recipes"]
   })
 
-  if (error) return error
-  if (isLoading) return 'Loading...'
+  const filteredRecipes = useMemo(() => {
+    let categoryItems = data?.filter((recipe: RecipeType) => categories.includes(recipe.category))
+    return categoryItems?.filter((queryRecipe: RecipeType) => {
+      return queryRecipe.title.toLowerCase().includes(query.toLowerCase())
+    })
+  }, [query, data, categories]);
 
-  let currentRecipes = data?.filter((recipe: RecipeType) => categories.includes(recipe.category));
+  if (error) return error;
+  if (isLoading) return 'Loading...';
 
   return (
     <main>
@@ -34,7 +40,8 @@ export default function Home() {
         <button onClick={() => setCategories(['Andere'])}>Andere</button>
         <button onClick={() => setCategories(['Dessert'])}>Dessert</button>
       </div>
-      <RecipesGrid recipes={currentRecipes} />
+      <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" className={styles.search} placeholder={"Search"} />
+      <RecipesGrid recipes={filteredRecipes} />
     </main>
   )
 }

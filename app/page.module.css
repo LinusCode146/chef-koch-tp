@@ -18,3 +18,14 @@
     background-color: white;
     color: black;
 }
+
+.search {
+    outline: none;
+    border: none;
+    border-radius: 3rem;
+    height: 4rem;
+    width: 30rem;
+    margin-left: 37vw;
+    margin-bottom: 2em;
+    padding: 1em;
+}

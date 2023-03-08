@@ -1,6 +1,6 @@
 .btn {
     border-radius: 5rem;
-    background: var(--main-pink);
+    background: conic-gradient(from -90deg at 50% -25%, blue, blueviolet);
     color: var(--main-text);
     height: 2.5rem;
     width: 7rem;
@@ -10,5 +10,5 @@
 }
 
 .btn:hover {
-    transform: scale(1.1);
+    filter: brightness(.8);
 }

@@ -1,0 +1,30 @@
+.container {
+    width: 45vw;
+    min-height: 10rem;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.info {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+}
+
+.info > img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}

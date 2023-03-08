@@ -39,6 +39,8 @@ model Comment {
   content   String
   recipe    Recipe   @relation(fields: [recipeId], references: [id])
   recipeId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
 }
 
 
@@ -79,6 +81,7 @@ model User {
   sessions      Session[]
   recipes       Recipe[]
   hearts        Heart[]
+  comments      Comment[]
 }
 
 model VerificationToken {

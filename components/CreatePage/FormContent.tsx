@@ -8,6 +8,7 @@ type FormContentProps = {
 }
 
 export default function FormContent ({content, updateFields}: FormContentProps) {
+
     return (
         <FormWrapper title={"Please enter the instructions"}>
             <div className={styles.container}>

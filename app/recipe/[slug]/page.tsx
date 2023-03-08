@@ -4,8 +4,13 @@ import styles from './page.module.css'
 import axios, {AxiosError} from "axios";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {RecipeType} from "@/types/Recipe";
-import Image from "next/image";
 import toast from "react-hot-toast";
+import AddComment from "@/components/AddComment";
+import useCopyToClipboard from "@/components/hooks/useCopyToClipboard";
+import Comment from "@/components/Comment";
+import {useMemo, useRef} from "react";
+import {isNewLine} from "acorn";
+
 
 type URL = {
     params: {
@@ -23,11 +28,14 @@ const fetchDetails = async (slug: string) => {
     const response = await axios.get(`/api/recipes/${slug}`)
     return response.data;
 }
+
 export default function RecipeDetail(url: URL) {
+    const [value, copy] = useCopyToClipboard()
     const { data, isLoading } = useQuery<RecipeType>({
         queryFn: () => fetchDetails(url.params.slug),
         queryKey: ["detail-recipe"],
     })
+    console.log(data)
     const queryClient = useQueryClient();
     let toastPostID : string
 
@@ -51,19 +59,24 @@ export default function RecipeDetail(url: URL) {
         toastPostID = toast.loading("Liking recipe...", { id: toastPostID })
         mutate({recipeId: data?.id})
     }
-
-
+    // @ts-ignore
     return (
-        <>
-            <div className={styles.headerFiller}></div>
-            <div className={styles.container}>
-                <button onClick={addLikeHandler} className={styles.likeBTN}>👍</button>
-                <h1 className={styles.title}>{data?.title} ({data?.hearts.length})</h1>
-                <div className={styles.card}>
-                    <img src={data?.image} alt="Recipes Image" />
-                    <div>{data?.content}</div>
-                </div>
+        <div className={styles.container}>
+            <div className={styles.info}>
+                <h1>{data?.title}     ❤️{data?.hearts.length}</h1>
+                <button onClick={addLikeHandler}>👍</button>
             </div>
-        </>
+            <div className={styles.instructions}>
+                <img src={data?.image} alt="Recipes image" className={styles.recipeImg} />
+                <div>{data?.content}</div>
+                <img onClick={() => copy(data?.content || "")} src={'/copy.png'} alt="copy" className={styles.copyIcon} />
+            </div>
+            <div className={styles.commentSection}>
+                <AddComment recipeId={data?.id || ""} />
+                {data?.comments.map((comment) => (
+                    <Comment key={comment.id} id={comment.id} content={comment.content} author={comment.author} createdAt={comment.createdAt} />
+                ))}
+            </div>
+        </div>
     )
 }

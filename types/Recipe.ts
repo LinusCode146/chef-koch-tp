@@ -42,4 +42,20 @@ export type RecipeType = {
             image: string
         }
     }[]
+    comments: Comment[],
+}
+
+export type Comment= {
+    id: string
+    authorId: string
+    content: string
+    createdAt: string
+    updatedAt: string
+    author: {
+        id: string
+        name: string
+        email: string
+        image: string
+    },
+    recipe: RecipeType
 }

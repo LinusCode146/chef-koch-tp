@@ -42,7 +42,7 @@ export default function Home() {
         <button onClick={() => setCategories(['Dessert'])}>Dessert</button>
       </div>
       <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" className={styles.search} placeholder={"Search"} />
-      <RecipesGrid recipes={filteredRecipes} />
+      <RecipesGrid recipes={filteredRecipes} auth={false} />
     </main>
   )
 }

@@ -9,7 +9,7 @@ import styles from './MyRecipes.module.css'
 
 
 
-export default function MyRecipes({userName}: {userName?: string | undefined | null}) : JSX.Element {
+export default function MyRecipes({userName, auth}: {userName?: string | undefined | null, auth: boolean | undefined | null}) : JSX.Element {
     const [query, setQuery] = useState("")
     const [categories, setCategories] = useState<string[]>(["Fisch", "Fleisch", "Vegan", "Andere", "Vegetarisch", "Dessert"])
 
@@ -39,7 +39,7 @@ export default function MyRecipes({userName}: {userName?: string | undefined | n
                 <button onClick={() => setCategories(['Dessert'])}>Dessert</button>
             </div>
             <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" className={styles.search} placeholder={"Welcome back " + userName} />
-            <RecipesGrid recipes={filteredRecipes} />
+            <RecipesGrid recipes={filteredRecipes} auth={true} />
         </>
     )
 }

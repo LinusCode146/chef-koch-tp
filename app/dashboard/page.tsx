@@ -11,7 +11,7 @@ export default async function Dashboard() {
 
     return (
         <main>
-            <MyRecipes userName={session?.user?.name} />
+            <MyRecipes userName={session?.user?.name} auth={true} />
         </main>
     )
 }

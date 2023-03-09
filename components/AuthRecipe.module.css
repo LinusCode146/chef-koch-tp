@@ -1,0 +1,38 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+
+.container {
+    min-height: 19rem;
+    width: 13rem;
+    text-align: center;
+    user-select: none;
+    position: relative;
+}
+
+.container  h3 {
+    margin-top: .5em;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2em;
+    font-family: 'Nunito', sans-serif;
+}
+
+
+
+.container  img {
+    object-fit: cover;
+    height: 18rem;
+    width: 100%;
+    border-radius: 1rem;
+    transition: .75s;
+    z-index: -10;
+}
+
+.container  img:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    z-index: -10;
+}
+
+

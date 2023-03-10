@@ -6,6 +6,7 @@ export type RecipeType = {
     category: string
     content: string
     image: string
+    inImage: string
     title: string
     createdAt: string
     updatedAt: string

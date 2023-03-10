@@ -40,7 +40,6 @@
     display: flex;
     justify-content: space-around;
     gap: 5rem;
-    position: relative;
     transition: all .5s;
 }
 
@@ -51,19 +50,26 @@
     border-radius: 50%;
 }
 
-.instructions div {
-    width: 60rem;
-    height: 35rem;
+.insImage {
+    width: 45rem;
+    height: 60rem;
     background-color: white;
     color: black;
     border-radius: 1rem;
     padding: 1.2rem;
+    overflow: scroll;
+}
+
+.insImage img {
+    object-fit: cover;
+    width: 45rem;
+    height: 60rem;
 }
 
 .copyIcon {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    right: -4rem;
+    top: 0.8rem;
     color: white;
     width: 1.8em;
     height: 1.8em;
@@ -79,4 +85,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.recipeContent {
+    margin-top: 5rem;
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
 }

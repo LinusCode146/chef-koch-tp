@@ -18,6 +18,7 @@ model Recipe {
   content   String
   image     String
   comments  Comment[]
+  inImage   String
   category  String
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String

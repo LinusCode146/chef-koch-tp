@@ -59,7 +59,7 @@ export default function RecipeDetail(url: URL) {
         toastPostID = toast.loading("Liking recipe...", { id: toastPostID })
         mutate({recipeId: data?.id})
     }
-    // @ts-ignore
+
     return (
         <div className={styles.container}>
             <div className={styles.info}>
@@ -67,9 +67,16 @@ export default function RecipeDetail(url: URL) {
                 <button onClick={addLikeHandler}>👍</button>
             </div>
             <div className={styles.instructions}>
-                <img src={data?.image} alt="Recipes image" className={styles.recipeImg} />
-                <div>{data?.content}</div>
-                <img onClick={() => copy(data?.content || "")} src={'/copy.png'} alt="copy" className={styles.copyIcon} />
+                <div className='flex flex-col gap-10 items-center'>
+                    <img src={data?.image} alt="Recipes image" className={styles.recipeImg} />
+                    <div className='flex relative'>
+                        <div className={styles.recipeContent}>{data?.content}
+                            <img onClick={() => copy(data?.content || "")} src={'/copy.png'} alt="copy" className={styles.copyIcon} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.insImage}><img src={data?.inImage} alt="instruction image"/></div>
             </div>
             <div className={styles.commentSection}>
                 <AddComment recipeId={data?.id || ""} />

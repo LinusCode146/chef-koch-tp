@@ -16,6 +16,7 @@ export type FormData = {
     content: string
     image: string
     category: string
+    inImage: string
 }
 
 const INITIAL_DATA: FormData = {
@@ -23,6 +24,7 @@ const INITIAL_DATA: FormData = {
     content: "",
     image: "",
     category: "",
+    inImage: "",
 }
 
 export default function CreateRecipe() {

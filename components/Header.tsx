@@ -14,7 +14,7 @@ export default async function Header (): Promise<JSX.Element> {
     return (
         <main className={styles.container}>
             <div className={styles.logo}>
-                <Link href={'/'}>ChefKoch</Link>
+                <Link href={'/'}>Mampf!</Link>
             </div>
             <NavLinks />
             <div className={styles.authLinks}>

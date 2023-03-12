@@ -13,6 +13,7 @@
 
 .logo {
     text-align: center;
+    text-transform: uppercase;
     color: var(--main-pink);
     font-size: 3rem;
     font-weight: bolder;

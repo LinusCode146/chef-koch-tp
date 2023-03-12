@@ -8,7 +8,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import styles from './page.module.css'
 import {Select, SelectOption} from "@/components/SelectCategory";
 
-const allCategories = ["Fisch", "Fleisch", "Vegan", "Andere", "Vegetarisch", "Dessert"]
+const allCategories = ["Fisch", "Fleisch", "Vegan", "Andere", "Vegetarisch", "Dessert", "Indisch", "Paul Hollywood", "Jamie Oliver", "Nudeln", "Reis"]
 
 const options = [
   {label: "Fleisch", value: ["Fleisch"]},
@@ -17,6 +17,12 @@ const options = [
   {label: "Andere", value: ["Andere"]},
   {label: "Fisch", value: ["Fisch"]},
   {label: "Dessert", value: ["Dessert"]},
+  {label: "Reis", value: ["Reis"]},
+  {label: "Nudeln", value: ["Nudeln"]},
+  {label: "Jamie Oliver", value: ["Jamie Oliver"]},
+  {label: "Indisch", value: ["Indisch"]},
+  {label: "Paul Hollywood", value: ["Paul Hollywood"]},
+  {label: "Kartoffeln", value: ["Kartoffelnl"]},
 ]
 export default function Home() {
   const [tags, setTags] = useState<SelectOption[]>([])

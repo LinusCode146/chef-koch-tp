@@ -15,7 +15,7 @@ export type FormData = {
     title: string
     content: string
     image: string
-    category: string
+    categories: string[]
     inImage: string
 }
 
@@ -23,7 +23,7 @@ const INITIAL_DATA: FormData = {
     title: "",
     content: "",
     image: "",
-    category: "",
+    categories: [],
     inImage: "",
 }
 

@@ -8,7 +8,7 @@ type RecipeProps = {
     title: string
     content: string
     image: string
-    category: string
+    categories: string[]
     hearts: {
         id: string
     }[]
@@ -16,7 +16,7 @@ type RecipeProps = {
 }
 
 
-export default function Recipe ({title, content, category, image, hearts, id} : Partial<RecipeType>) {
+export default function Recipe ({title, content, categories, image, hearts, id} : Partial<RecipeType>) {
     return (
         <motion.div layout animate={{opacity: 1}} initial={{opacity: 0}} exit={{opacity: 0}} className={styles.container}>
             <Link href={`/recipe/${id}`}>

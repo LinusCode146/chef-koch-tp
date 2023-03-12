@@ -17,15 +17,14 @@ export default async function handler(
         //Delete a post
         try {
             const recipeId = req.body
-            console.log(recipeId)
-            const result = await prisma.recipe.delete({
+            const result = await prisma.Recipe.delete({
                 where: {
                     id: recipeId,
                 }
             })
             res.status(200).json(result);
         } catch(err) {
-            res.status(403).json({message: "Error occurred while deleting the recipe"})
+            res.status(403).json({message: "Error occurred while deleting the post"})
         }
     }
 }

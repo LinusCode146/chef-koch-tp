@@ -13,26 +13,34 @@ type RecipeProps = {
     title: string
     content: string
     image: string
-    category: string
+    categories: string[]
     hearts: {
         id: string
     }[]
     id: string
 }
 
+type DeleteProps = {
+    recipeId: string
+}
 
-export default function AuthRecipe ({title, content, category, image, hearts, id} : Partial<RecipeType>) {
+
+export default function AuthRecipe ({title, content, categories, image, hearts, id} : Partial<RecipeType>) {
     const [toggle, setToggle] = useState(false)
     const queryClient = useQueryClient()
     let deleteToastID: string
 
+    // @ts-ignore
+    // @ts-ignore
     const { mutate } = useMutation(
-        async (id: string | undefined) => axios.delete('/api/recipes/deleteRecipe', {data: id}),
+        async (id : string | undefined) => {
+            return axios.delete('/api/recipes/deleteRecipe', {data: id});
+        },
         {
             onError: (error) => {
                 toast.error("Error deleting the recipe", { id: deleteToastID })
             },
-            onSuccess: (data) => {
+            onSuccess: (result) => {
                 toast.success("Recipe has been deleted!", { id: deleteToastID })
                 queryClient.invalidateQueries(["recipes"]).then(r => null)
             }

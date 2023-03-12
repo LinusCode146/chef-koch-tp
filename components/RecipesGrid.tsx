@@ -10,10 +10,10 @@ export default function RecipesGrid ({recipes, auth}: {recipes: RecipeType[] | u
         <motion.div layout className={styles.container}>
             <AnimatePresence>
                 {!auth && recipes?.map((recipe: RecipeType) => (
-                    <Recipe id={recipe.id} key={recipe.id} title={recipe.title} content={recipe.content} image={recipe.image} category={recipe.category} hearts={recipe.hearts} />
+                    <Recipe id={recipe.id} key={recipe.id} title={recipe.title} content={recipe.content} image={recipe.image} categories={recipe.categories} hearts={recipe.hearts} />
                 ))}
                 {auth && recipes?.map((recipe: RecipeType) => (
-                    <AuthRecipe id={recipe.id} key={recipe.id} title={recipe.title} content={recipe.content} image={recipe.image} category={recipe.category} hearts={recipe.hearts} />
+                    <AuthRecipe id={recipe.id} key={recipe.id} title={recipe.title} content={recipe.content} image={recipe.image} categories={recipe.categories} hearts={recipe.hearts} />
                 ))}
             </AnimatePresence>
         </motion.div>

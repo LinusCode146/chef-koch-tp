@@ -13,7 +13,8 @@ export default async function handler(
     if(!session) return res.status(401).json({ message: "Please sign in to make a recipe!" });
     if( req.method !== "POST") return res.status(401).json({message: "Contacted addRecipe API Route"})
 
-    const { image, title, content, category, inImage } = req.body;
+    const { image, title, content, categories, inImage } = req.body;
+    console.log(req.body)
 
     const prismaUser = await prisma.user.findUnique({
         where: { email: session?.user?.email },
@@ -26,7 +27,7 @@ export default async function handler(
                 inImage,
                 title,
                 content,
-                category,
+                categories: categories,
                 authorId: prismaUser.id,
             }
         })

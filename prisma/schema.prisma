@@ -11,18 +11,18 @@ datasource db {
 }
 
 model Recipe {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  content   String
-  image     String
-  comments  Comment[]
-  inImage   String
-  category  String
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  hearts    Heart[]
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  content     String
+  image       String
+  comments    Comment[]
+  inImage     String
+  categories  String[]
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+  hearts      Heart[]
 }
 
 model Heart {
@@ -38,9 +38,9 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   content   String
-  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
 }
 

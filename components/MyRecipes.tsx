@@ -19,7 +19,7 @@ export default function MyRecipes({userName, auth}: {userName?: string | undefin
     })
 
     const filteredRecipes = useMemo(() => {
-        let categoryItems = data?.filter((recipe: RecipeType) => categories.includes(recipe.category))
+        let categoryItems = data?.filter((recipe: RecipeType) => categories.every(elem => recipe.categories.includes(elem)))
         return categoryItems?.filter((queryRecipe: RecipeType) => {
             return queryRecipe.title.toLowerCase().includes(query.toLowerCase())
         })

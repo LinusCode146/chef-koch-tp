@@ -3,7 +3,7 @@
 export type RecipeType = {
     id: string
     authorId: string
-    category: string
+    categories: string[]
     content: string
     image: string
     inImage: string
@@ -23,7 +23,7 @@ export type RecipeType = {
         recipe: {
             id: string
             authorId: string
-            category: string
+            categories: string[]
             content: string
             image: string
             title: string

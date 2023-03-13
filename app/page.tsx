@@ -24,7 +24,7 @@ const options = [
   {label: "Jamie Oliver", value: ["Jamie Oliver"]},
   {label: "Indisch", value: ["Indisch"]},
   {label: "Paul Hollywood", value: ["Paul Hollywood"]},
-  {label: "Kartoffeln", value: ["Kartoffelnl"]},
+  {label: "Kartoffeln", value: ["Kartoffeln"]},
 ]
 export default function Home() {
   const [tags, setTags] = useState<SelectOption[]>([])

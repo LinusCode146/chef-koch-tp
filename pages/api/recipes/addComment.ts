@@ -24,7 +24,6 @@ export default async function handler(
         //Add a comment
         try {
             const { content, recipeId } = req.body;
-            console.log(content, recipeId)
 
             if(!content.trim().length) return res.status(401).json({message: "Please enter something"})
 

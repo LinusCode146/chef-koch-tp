@@ -14,7 +14,6 @@ export default async function handler(
     if( req.method !== "POST") return res.status(401).json({message: "Contacted addRecipe API Route"})
 
     const { image, title, content, categories, inImage } = req.body;
-    console.log(req.body)
 
     const prismaUser = await prisma.user.findUnique({
         where: { email: session?.user?.email },

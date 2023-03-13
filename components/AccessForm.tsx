@@ -16,7 +16,6 @@ export default function AccessForm () {
     })
 
     useEffect(() => {
-        console.log(data)
         if(data) setPassword(data[0].password)
     }, [data])
 

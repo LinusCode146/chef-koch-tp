@@ -38,7 +38,6 @@ export default function RecipeDetail(url: URL) {
         queryFn: () => fetchDetails(url.params.slug),
         queryKey: ["detail-recipe"],
     })
-    console.log(data)
     const queryClient = useQueryClient();
     let toastPostID : string
 

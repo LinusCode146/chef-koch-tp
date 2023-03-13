@@ -12,7 +12,6 @@ export default async function handler(
 
     try{
         const data = await prisma.UserAccessPassword.findMany();
-        console.log(data)
         res.status(200).json(data)
     } catch (err) {
         res.status(403).json({error: "Error fetching posts"})

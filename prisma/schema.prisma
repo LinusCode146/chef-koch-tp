@@ -92,3 +92,8 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model UserAccessPassword {
+  id        String    @id @default(cuid())
+  password  String
+}

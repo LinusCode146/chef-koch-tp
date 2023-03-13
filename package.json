@@ -16,6 +16,7 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "axios": "^1.2.0-alpha.1",
+    "bad-words": "^3.0.4",
     "copy-to-clipboard": "^3.3.3",
     "eslint-config-next": "^13.2.3",
     "framer-motion": "^10.0.1",
@@ -23,7 +24,8 @@
     "next-auth": "^4.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hot-toast": "^2.4.0"
+    "react-hot-toast": "^2.4.0",
+    "regexcensor": "^1.0.4"
   },
   "devDependencies": {
     "@types/node": "^18.14.2",

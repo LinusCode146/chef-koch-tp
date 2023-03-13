@@ -2,13 +2,15 @@
 
 import {useMultistepForm} from "@/components/hooks/useMultistepForm";
 import styles from './CreateRecipe.module.css'
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import FormCategory from "@/components/CreatePage/FormCategory";
 import FormTitle from "@/components/CreatePage/FormTitle";
 import FormContent from "@/components/CreatePage/FormContent";
 import { useMutation, useQueryClient} from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import axios, {AxiosError} from "axios";
+import {UserAccessContext} from "@/components/CreatePage/contexts/UserAccessContext";
+import AccessForm from "@/components/AccessForm";
 
 
 export type FormData = {
@@ -29,6 +31,7 @@ const INITIAL_DATA: FormData = {
 
 export default function CreateRecipe() {
     const [data, setData] = useState(INITIAL_DATA);
+    const {access, setAccess} = useContext(UserAccessContext);
     const [isDisabled, setIsDisabled] = useState(false)
     const queryClient = useQueryClient()
     let toastPostID : string
@@ -71,18 +74,24 @@ export default function CreateRecipe() {
     }
 
     return (
-        <div className={styles.outerBox}>
-            <div className={styles.container}>
-                <form onSubmit={submitHandler}>
-                    <div className={styles.pageCounter}>{currentStepIndex + 1} / {steps.length}</div>
-                    {step}
-                    <div className={styles.BTNContainer}>
-                        {!isFirstStep && <button disabled={isDisabled} className={styles.backBTN} onClick={back} type="button">Back</button>}
-                        {isFirstStep && <button className={styles.fillBTN} type="button"></button>}
-                        <button disabled={isDisabled} className={styles.nextBTN} type="submit">{isLastStep ? "Finish" : "Next"}</button>
+        <>
+            {!access && <AccessForm />}
+            {access &&
+                <div className={styles.outerBox}>
+                    <div className={styles.container}>
+                        <form onSubmit={submitHandler}>
+                            <div className={styles.pageCounter}>{currentStepIndex + 1} / {steps.length}</div>
+                            {step}
+                            <div className={styles.BTNContainer}>
+                                {!isFirstStep && <button disabled={isDisabled} className={styles.backBTN} onClick={back} type="button">Back</button>}
+                                {isFirstStep && <button className={styles.fillBTN} type="button"></button>}
+                                <button disabled={isDisabled} className={styles.nextBTN} type="submit">{isLastStep ? "Finish" : "Next"}</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
+            }
+
+        </>
     )
 }

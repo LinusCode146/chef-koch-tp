@@ -4,9 +4,11 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import { RecipeType } from "@/types/Recipe";
 import RecipesGrid from "@/components/RecipesGrid";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import styles from './page.module.css'
 import {Select, SelectOption} from "@/components/SelectCategory";
+import {UserAccessContext} from "@/components/CreatePage/contexts/UserAccessContext";
+import AccessForm from "@/components/AccessForm";
 
 const allCategories = ["Fisch", "Fleisch", "Vegan", "Andere", "Vegetarisch", "Dessert", "Indisch", "Paul Hollywood", "Jamie Oliver", "Nudeln", "Reis"]
 
@@ -28,6 +30,7 @@ export default function Home() {
   const [tags, setTags] = useState<SelectOption[]>([])
   const [query, setQuery] = useState("")
   const [categories, setCategories] = useState<string[]>([])
+  const {access, setAccess} = useContext(UserAccessContext);
 
   let { data, error, isLoading } = useQuery<RecipeType[]>({
     queryFn: allRecipes,
@@ -63,13 +66,18 @@ export default function Home() {
 
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Select options={options} onChange={setTags} multiple value={tags} />
-      </div>
-      <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" className={styles.search} placeholder={"Search"} />
-      <RecipesGrid recipes={filteredRecipes} auth={false} />
-    </main>
+      <>
+        {!access && <AccessForm />}
+        {access &&
+            <main>
+              <div className={styles.container}>
+                <Select options={options} onChange={setTags} multiple value={tags} />
+              </div>
+              <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" className={styles.search} placeholder={"Search"} />
+              <RecipesGrid recipes={filteredRecipes} auth={false} />
+            </main>
+        }
+      </>
   )
 }
 

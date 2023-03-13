@@ -8,8 +8,10 @@ import toast from "react-hot-toast";
 import AddComment from "@/components/AddComment";
 import useCopyToClipboard from "@/components/hooks/useCopyToClipboard";
 import Comment from "@/components/Comment";
-import {useMemo, useRef} from "react";
+import {useContext, useMemo, useRef} from "react";
 import {isNewLine} from "acorn";
+import {UserAccessContext} from "@/components/CreatePage/contexts/UserAccessContext";
+import AccessForm from "@/components/AccessForm";
 
 
 type URL = {
@@ -30,6 +32,7 @@ const fetchDetails = async (slug: string) => {
 }
 
 export default function RecipeDetail(url: URL) {
+    const {access, setAccess} = useContext(UserAccessContext);
     const [value, copy] = useCopyToClipboard()
     const { data, isLoading } = useQuery<RecipeType>({
         queryFn: () => fetchDetails(url.params.slug),
@@ -61,29 +64,35 @@ export default function RecipeDetail(url: URL) {
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.info}>
-                <h1>{data?.title}     ❤️{data?.hearts.length}</h1>
-                <button onClick={addLikeHandler}>👍</button>
-            </div>
-            <div className={styles.instructions}>
-                <div className='flex flex-col gap-10 items-center'>
-                    <img src={data?.image} alt="Recipes image" className={styles.recipeImg} />
-                    <div className='flex relative'>
-                        <div className={styles.recipeContent}>{data?.content}
-                            <img onClick={() => copy(data?.content || "")} src={'/copy.png'} alt="copy" className={styles.copyIcon} />
+        <>
+            {!access && <AccessForm />}
+            {access &&
+                <div className={styles.container}>
+                    <div className={styles.info}>
+                        <h1>{data?.title}     ❤️{data?.hearts.length}</h1>
+                        <button onClick={addLikeHandler}>👍</button>
+                    </div>
+                    <div className={styles.instructions}>
+                        <div className='flex flex-col gap-10 items-center'>
+                            <img src={data?.image} alt="Recipes image" className={styles.recipeImg} />
+                            <div className='flex relative'>
+                                <div className={styles.recipeContent}>{data?.content}
+                                    <img onClick={() => copy(data?.content || "")} src={'/copy.png'} alt="copy" className={styles.copyIcon} />
+                                </div>
+                            </div>
                         </div>
+
+                        <div className={styles.insImage}><img src={data?.inImage} alt="instruction image"/></div>
+                    </div>
+                    <div className={styles.commentSection}>
+                        <AddComment recipeId={data?.id || ""} />
+                        {data?.comments.map((comment) => (
+                            <Comment key={comment.id} id={comment.id} content={comment.content} author={comment.author} createdAt={comment.createdAt} />
+                        ))}
                     </div>
                 </div>
+            }
 
-                <div className={styles.insImage}><img src={data?.inImage} alt="instruction image"/></div>
-            </div>
-            <div className={styles.commentSection}>
-                <AddComment recipeId={data?.id || ""} />
-                {data?.comments.map((comment) => (
-                    <Comment key={comment.id} id={comment.id} content={comment.content} author={comment.author} createdAt={comment.createdAt} />
-                ))}
-            </div>
-        </div>
+        </>
     )
 }
